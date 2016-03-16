@@ -9,10 +9,15 @@ public class Actor {
 	protected SpriteCache spriteCache;
 	protected int currentFrame;
 	protected String[] spriteNames;
+	protected int frameSpeed;
+	protected int t;
 
 	public Actor(Stage stage) {
 		this.stage = stage;
 		spriteCache = stage.getSpriteCache();
+		currentFrame = 0;
+		frameSpeed = 1;
+		t = 1;
 	}
 
 	public void paint(Graphics2D g) {
@@ -65,5 +70,21 @@ public class Actor {
 
 	public void setWidth(int i) {
 		width = i;
+	}
+	
+	public int getFrameSpeed() {
+		return frameSpeed;
+	}
+
+	public void setFrameSpeed(int i) {
+		frameSpeed = i;
+	}
+	
+	public void act() {
+		t++;
+		if (t % frameSpeed == 0) {
+			t = 0;
+			currentFrame = (currentFrame + 1) % spriteNames.length;
+		}
 	}
 }

@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.Image;
@@ -18,12 +19,13 @@ class XGame2 extends Canvas implements ActionListener, Stage {
 	
 	private Image dbImage;
 	private Graphics dbg;
-    
+	
     public XGame2() {
     	spriteCache = new SpriteCache();
         setFocusable(true);
         initGame();
     }
+    
     
     public void initGame() {
     	actors = new ArrayList();
@@ -66,4 +68,21 @@ class XGame2 extends Canvas implements ActionListener, Stage {
 		 g.drawImage (dbImage, 0, 0, this);
 		 paint(g);
     }
+    
+    public void actionPerformed(ActionEvent e) {
+    	repaint();
+        int i = 0;
+		while (i < actors.size()) {
+			Actor m = (Actor) actors.get(i);
+			m.act();
+			i++;
+        }
+    }
+
+
+	@Override
+	public void addActor(Actor a) {
+		// TODO Auto-generated method stub
+		
+	}
 }

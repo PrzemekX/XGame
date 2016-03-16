@@ -1,10 +1,11 @@
 public class Monster extends Actor {
 	protected int vx;
-	String []pot = { "EStatek1.png"};
+	String []pot = { "EStatek1.png" };
 
 	public Monster(Stage stage) {
 		super(stage);
 		setSpriteNames( pot );
+		setFrameSpeed(10);
 	}
 
 	public void spawn() {
@@ -14,7 +15,14 @@ public class Monster extends Actor {
 		m.setVx((int) 1);
 		stage.addActor(m);
 	}
-
+	
+	public void act() {
+		super.act();
+		x += vx;
+		if (x < 0 || x > (Stage.SZEROKOSC - getWidth())) {
+			vx = -vx;
+		}
+	}
 	public int getVx() {
 		return vx;
 	}

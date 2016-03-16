@@ -12,8 +12,9 @@ public class XGame extends JFrame{
 		add(XGame2);
 		setVisible(true);
 	}
-
+	
 	public static void main(String[] args) throws FileNotFoundException{
 		new XGame();
+		XGame2.timer.start();
 	}
 }

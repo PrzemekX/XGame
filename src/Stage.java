@@ -9,5 +9,4 @@ public interface Stage extends ImageObserver {
 	public SpriteCache getSpriteCache();
 
 	public void addActor(Actor a);
-
 }
