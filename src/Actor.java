@@ -11,6 +11,7 @@ public class Actor {
 	protected String[] spriteNames;
 	protected int frameSpeed;
 	protected int t;
+	protected boolean markedForRemoval;
 
 	public Actor(Stage stage) {
 		this.stage = stage;
@@ -54,6 +55,14 @@ public class Actor {
 			height = Math.max(height, image.getHeight());
 			width = Math.max(width, image.getWidth());
 		}
+	}
+	
+	public void remove() {
+		markedForRemoval = true;
+	}
+	
+	public boolean isMarkedForRemoval() {
+		return markedForRemoval;
 	}
 
 	public int getHeight() {
