@@ -5,7 +5,10 @@ public class Player extends Actor {
 	protected int vx;
 	protected int vy;
 	private boolean up, down, left, right;
+	public static final int MAX_HP = 200;
 	public static final int MAX_BOMBS = 5;
+	public static int score;
+	private int hp;
 	private int clusterBombs;
 	public int ExhaustedBullet = 0, ExhaustedBomb = 0;
 
@@ -13,6 +16,39 @@ public class Player extends Actor {
 		super(stage);
 		setSpriteNames(new String[] { "MStatek1.png" });
 		clusterBombs = MAX_BOMBS;
+		hp = MAX_HP;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int i) {
+		score = i;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int i) {
+		hp = i;
+	}
+	
+	public void addScore(int i) {
+		score += i;
+	}
+
+	public void addHp(int i) {
+		if (hp > -1 * i) {
+			hp += i;
+		} else {
+			hp = 0;
+		}
+	}
+	
+	public int getClusterBombs() {
+		return clusterBombs;
 	}
 
 	public void act() {
@@ -143,5 +179,11 @@ public class Player extends Actor {
 			break;
 		}
 		updateSpeed();
+	}
+	
+	public void collision(Actor a) {
+		if (a instanceof Monster) {
+			addHp(-40);
+		}
 	}
 }

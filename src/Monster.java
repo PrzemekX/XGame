@@ -30,4 +30,12 @@ public class Monster extends Actor {
 	public void setVx(int i) {
 		vx = i;
 	}
+	
+	public void collision(Actor a) {
+		if (a instanceof Bullet || a instanceof Bomb || a instanceof Player) {
+			remove();
+			spawn();
+			stage.getPlayer().addScore(20);
+		}
+	}
 }

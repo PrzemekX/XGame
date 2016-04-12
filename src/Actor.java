@@ -1,4 +1,5 @@
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Actor {
@@ -87,6 +88,13 @@ public class Actor {
 
 	public void setFrameSpeed(int i) {
 		frameSpeed = i;
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, width, height);
+	}
+	
+	public void collision(Actor a) {
 	}
 	
 	public void act() {

@@ -4,7 +4,7 @@ public interface Stage extends ImageObserver {
 	public static final int SZEROKOSC = 800;
 	public static final int WYSOKOSC = 600;
 	public static final int SZYBKOSC = 10;
-	public static final int WYSOKOSC_GRY = 550;
+	public static final int WYSOKOSC_GRY = 530;
 
 	public SpriteCache getSpriteCache();
 
