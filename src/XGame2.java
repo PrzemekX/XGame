@@ -136,14 +136,24 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 	}
 
 	public void paintAmmo(Graphics2D g) {
-		int xBase = 280 + Player.MAX_HP + 10;
+		int xBaseBomb = 280 + Player.MAX_HP + 10; //poz na osi OX
+		int yBaseBomb = Stage.WYSOKOSC_GRY + 8; //poz na osi OY
 		g.setFont(new Font("Arial", Font.BOLD, 10));
 		g.setPaint(Color.red);
-		g.drawString("Bombs(b):", xBase, Stage.WYSOKOSC_GRY + 8);
+		g.drawString("Bombs(b):", xBaseBomb, yBaseBomb);
 		for (int i = 0; i < player.getClusterBombs(); i++) {
 			BufferedImage bomb = spriteCache.getSprite("bombUL.gif");
-			g.drawImage(bomb, xBase + i * bomb.getWidth() + 52,
+			g.drawImage(bomb, xBaseBomb + i * bomb.getWidth() + 52,
 					Stage.WYSOKOSC_GRY, this);
+		}
+		int xBaseMissle = xBaseBomb;
+		int yBaseMissle = yBaseBomb + 20;
+		g.setPaint(Color.yellow);
+		g.drawString("Missle(m):", xBaseMissle, yBaseMissle);
+		for (int i = 0; i < player.getMissle(); i++) {
+			BufferedImage missle = spriteCache.getSprite("missle1.png");
+			g.drawImage(missle, xBaseMissle + i * missle.getWidth() + 52,
+					yBaseMissle - 14, this);
 		}
 	}
 	

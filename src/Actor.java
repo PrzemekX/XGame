@@ -18,7 +18,7 @@ public class Actor {
 		this.stage = stage;
 		spriteCache = stage.getSpriteCache();
 		currentFrame = 0;
-		frameSpeed = 1;
+		frameSpeed = 2;
 		t = 1;
 	}
 

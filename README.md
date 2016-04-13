@@ -14,7 +14,7 @@ Dodanie gracza oraz sterowania nim, licznik fps.
 4. Tydzień [+]
 Dodanie ataku podstawowego (laser) oraz dodatkowego (bomba) który będzie limitowany.
 
-5. Tydzień [-]
+5. Tydzień [+]
 Dodanie kolizji, statystyk życia oraz zdobytych punktów, nowej broni ofensywnej.
 
 6. Tydzień [-]
