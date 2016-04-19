@@ -42,7 +42,7 @@ public class Monster extends Actor {
 	}
 	
 	public void collision(Actor a) {
-		if(a instanceof Bullet || a instanceof Bomb || a instanceof Player || a instanceof Expl) {
+		if(a instanceof Bullet || a instanceof Bomb || a instanceof Player || a instanceof Expl || a instanceof REBullet) {
 			remove();
 			spawn();
 			stage.getPlayer().addScore(20);

@@ -27,6 +27,7 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 	private Player player;
 	public long usedTime;
 	public long firstTime;
+	public long Time0;
 	private boolean gameLose = false;
 	
 	public Player getPlayer() {
@@ -54,7 +55,7 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 		player.setX(400);
 		player.setY(400);
 		timer = new Timer(DELAY, this);
-		firstTime = System.currentTimeMillis(); //FPS
+		firstTime = System.currentTimeMillis();
     }
     
     public void addActor(Actor a) {
@@ -102,8 +103,17 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 		 paint (dbg);
 		 g.drawImage (dbImage, 0, 0, this);
 		 paint(g);
+		 //FPS
 		 if((t - firstTime) % 20 == 0)
 			 usedTime = System.currentTimeMillis() - t;
+		 //Shield move
+		 if(Player.ShieldWork && Time0 == 0)
+			 Time0 = System.currentTimeMillis();
+		 if(Player.ShieldWork && t - Time0 >= 5000)
+		 {
+			 Player.ShieldWork = false;
+			 Time0 = 0;
+		 }
     }
     
     public void keyPressed(KeyEvent e) {
@@ -143,6 +153,7 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 	}
 
 	public void paintAmmo(Graphics2D g) {
+		//Bomb
 		int xBaseBomb = 280 + Player.MAX_HP + 10; //poz na osi OX
 		int yBaseBomb = Stage.WYSOKOSC_GRY + 8; //poz na osi OY
 		g.setFont(new Font("Arial", Font.BOLD, 10));
@@ -153,6 +164,7 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 			g.drawImage(bomb, xBaseBomb + i * bomb.getWidth() + 52,
 					Stage.WYSOKOSC_GRY, this);
 		}
+		//Missle
 		int xBaseMissle = xBaseBomb;
 		int yBaseMissle = yBaseBomb + 20;
 		g.setPaint(Color.yellow);
@@ -161,6 +173,16 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 			BufferedImage missle = spriteCache.getSprite("missle1.png");
 			g.drawImage(missle, xBaseMissle + i * missle.getWidth() + 52,
 					yBaseMissle - 14, this);
+		}
+		//Shield
+		int xBaseShield = xBaseBomb + 120;
+		int yBaseShield = yBaseBomb;
+		g.setPaint(Color.blue);
+		g.drawString("Shield(s):", xBaseShield, yBaseShield);
+		for (int i = 0; i < player.getShields(); i++) {
+			BufferedImage shield = spriteCache.getSprite("shield.gif");
+			g.drawImage(shield, xBaseShield + i * shield.getWidth() + 47,
+					yBaseShield - 10, this);
 		}
 	}
 	

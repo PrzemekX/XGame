@@ -17,7 +17,7 @@ Dodanie ataku podstawowego (laser) oraz dodatkowego (bomba) który będzie limit
 5. Tydzień [+]
 Dodanie kolizji, statystyk życia oraz zdobytych punktów, nowej broni ofensywnej.
 
-6. Tydzień [-]
+6. Tydzień [+]
 Dodanie przeciwnikom ataków, oraz warunku końca gry, nowej broni defensywnej.
 
 7. Tydzień [-]

@@ -6,6 +6,13 @@ public class EBullet extends Actor {
 		setSpriteNames(new String[] { "EBullet.gif"});
 		setFrameSpeed(10);
 	}
+	
+	public void REBullet() {
+		REBullet REB = new REBullet(stage);
+		REB.setX(x);
+		REB.setY(y);
+		stage.addActor(REB);
+	}
 
 	public void act() {
 		super.act();
@@ -16,7 +23,14 @@ public class EBullet extends Actor {
 	
 	public void collision(Actor a) {
 		if (a instanceof Player) {
-			remove();
+			if(Player.ShieldWork) {
+				remove();
+				REBullet();
+			}
+			else
+			{
+				remove();
+			}
 		}
 	}
 }
