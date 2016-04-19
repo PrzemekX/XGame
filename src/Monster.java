@@ -1,4 +1,5 @@
 public class Monster extends Actor {
+	protected static final double FIRING_FREQUENCY = 0.01;
 	protected int vx;
 	String []pot = { "EStatek1.png" };
 
@@ -6,6 +7,13 @@ public class Monster extends Actor {
 		super(stage);
 		setSpriteNames( pot );
 		setFrameSpeed(10);
+	}
+	
+	public void fire() {
+		EBullet m = new EBullet(stage);
+		m.setX(x + getWidth() / 2);
+		m.setY(y + getHeight());
+		stage.addActor(m);
 	}
 
 	public void spawn() {
@@ -22,6 +30,8 @@ public class Monster extends Actor {
 		if (x < 0 || x > (Stage.SZEROKOSC - getWidth())) {
 			vx = -vx;
 		}
+		if (Math.random() < FIRING_FREQUENCY)
+			fire();
 	}
 	public int getVx() {
 		return vx;

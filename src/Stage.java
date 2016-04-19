@@ -7,8 +7,7 @@ public interface Stage extends ImageObserver {
 	public static final int WYSOKOSC_GRY = 530;
 
 	public SpriteCache getSpriteCache();
-
 	public void addActor(Actor a);
-	
 	public Player getPlayer();
+	public void gameLose();
 }

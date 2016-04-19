@@ -27,6 +27,7 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 	private Player player;
 	public long usedTime;
 	public long firstTime;
+	private boolean gameLose = false;
 	
 	public Player getPlayer() {
 		return player;
@@ -75,6 +76,12 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
     		}
     		player.paint(g2d);
     		paintStatus(g2d);
+    		if (gameLose) { 
+    			try {
+				paintGameOver(g2d);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} }
     		g.setColor(Color.white);
     		if (usedTime > 0)
     			g.drawString(String.valueOf(1000 / usedTime)+" fps",5,WYSOKOSC-35);
@@ -155,6 +162,17 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 			g.drawImage(missle, xBaseMissle + i * missle.getWidth() + 52,
 					yBaseMissle - 14, this);
 		}
+	}
+	
+	public void gameLose() {
+		gameLose = true;
+	}
+	
+	public void paintGameOver(Graphics2D g) throws FileNotFoundException{
+		g.setColor(Color.white);
+		g.setFont(new Font("Arial", Font.BOLD, 20));
+		g.drawString("GAME OVER", Stage.SZEROKOSC / 2 - 50, Stage.WYSOKOSC / 2);
+		timer.stop();
 	}
 	
     public void checkCollision() {

@@ -209,5 +209,12 @@ public class Player extends Actor {
 		if (a instanceof Monster) {
 			addHp(-40);
 		}
+		if (a instanceof EBullet) {
+			addHp(-10);
+		}
+		if (getHp() <= 0) 
+		{ 
+			stage.gameLose();
+		}
 	}
 }
