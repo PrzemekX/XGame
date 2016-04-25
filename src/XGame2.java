@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.awt.event.KeyListener;
+import java.awt.TexturePaint;
 
 class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
     private final int DELAY = 20;
@@ -29,6 +30,9 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 	public long firstTime;
 	public long Time0;
 	private boolean gameLose = false;
+	private BufferedImage kosmos;
+	private int mov;
+	public long movTime;
 	
 	public Player getPlayer() {
 		return player;
@@ -70,6 +74,8 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
         super.paint(g);
         if (status) {
         	Graphics2D g2d = (Graphics2D)g;
+        	kosmos = spriteCache.getSprite("Kosmos.png");
+        	g2d.setPaint(new TexturePaint(kosmos, new Rectangle(0, mov, kosmos.getWidth(), kosmos.getHeight())));
     		g2d.fillRect(0, 0, getWidth(), getHeight());
     		for (int i = 0; i < actors.size(); i++) {
     			Actor m = (Actor) actors.get(i);
@@ -106,7 +112,13 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 		 //FPS
 		 if((t - firstTime) % 20 == 0)
 			 usedTime = System.currentTimeMillis() - t;
-		 //Shield move
+		 //Kosmos animation
+		 if(movTime == 0 || t - movTime > 10)
+		 {
+			 movTime = System.currentTimeMillis();
+			 mov+=2;
+		 }
+		//Shield move
 		 if(Player.ShieldWork && Time0 == 0)
 			 Time0 = System.currentTimeMillis();
 		 if(Player.ShieldWork && t - Time0 >= 5000)
