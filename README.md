@@ -20,7 +20,7 @@ Dodanie kolizji, statystyk życia oraz zdobytych punktów, nowej broni ofensywne
 6. Tydzień [+]
 Dodanie przeciwnikom ataków, oraz warunku końca gry, nowej broni defensywnej.
 
-7. Tydzień [-]
+7. Tydzień [+]
 Odradzanie się potworów, animowane tło oraz zatrzymywanie/wznawianie gry.
 
 8. Tydzień [-]

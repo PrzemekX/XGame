@@ -225,6 +225,17 @@ public class Player extends Actor {
 		case KeyEvent.VK_S:
 				Shield();
 			break;
+		case KeyEvent.VK_P:
+			if(!XGame2.gamePause)
+			{
+				XGame2.gamePause = true;
+			}
+			else
+			{
+				XGame2.timer.start();
+				XGame2.gamePause = false;
+			}
+			break;
 		}
 		updateSpeed();
 	}

@@ -30,6 +30,7 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 	public long firstTime;
 	public long Time0;
 	private boolean gameLose = false;
+	public static boolean gamePause = false;
 	private BufferedImage kosmos;
 	private int mov;
 	public long movTime;
@@ -83,10 +84,13 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
     		}
     		player.paint(g2d);
     		paintStatus(g2d);
-    		if (gameLose) { 
+    		if (gameLose || gamePause) { 
     			try {
-				paintGameOver(g2d);
-			} catch (FileNotFoundException e) {
+    				if(gameLose)
+    					paintGameOver(g2d);
+    				if(gamePause)
+    					paintGamePause(g2d);
+    			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} }
     		g.setColor(Color.white);
@@ -206,6 +210,13 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 		g.setColor(Color.white);
 		g.setFont(new Font("Arial", Font.BOLD, 20));
 		g.drawString("GAME OVER", Stage.SZEROKOSC / 2 - 50, Stage.WYSOKOSC / 2);
+		timer.stop();
+	}
+	
+	public void paintGamePause(Graphics2D g) throws FileNotFoundException{
+		g.setColor(Color.white);
+		g.setFont(new Font("Arial", Font.BOLD, 20));
+		g.drawString("PAUSE", Stage.SZEROKOSC / 2 - 7, Stage.WYSOKOSC / 2);
 		timer.stop();
 	}
 	
