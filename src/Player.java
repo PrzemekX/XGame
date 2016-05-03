@@ -50,6 +50,33 @@ public class Player extends Actor {
 		}
 	}
 	
+	public void addClusterBombs(int i) {
+		if (clusterBombs + i <= MAX_BOMBS) {
+			clusterBombs += i;
+		}
+		else {
+			clusterBombs = MAX_BOMBS;
+		}
+	}
+	
+	public void addShield(int i) {
+		if (shield + i <= MAX_SHIELDS) {
+			shield += i;
+		}
+		else {
+			shield = MAX_SHIELDS;
+		}
+	}
+	
+	public void addMissle(int i) {
+		if (missle + i <= MAX_MISSLE) {
+			missle += i;
+		}
+		else {
+			missle = MAX_MISSLE;
+		}
+	}
+	
 	public int getClusterBombs() {
 		return clusterBombs;
 	}
@@ -254,6 +281,23 @@ public class Player extends Actor {
 			if (a instanceof EBullet) {
 				addHp(-10);
 			}
+		}
+		if (a instanceof HPBox) {
+			a.remove();
+			addHp(50);
+		}
+		
+		if (a instanceof BombBox) {
+			a.remove();
+			addClusterBombs(1);
+		}
+		if (a instanceof ShieldBox) {
+			a.remove();
+			addShield(1);
+		}
+		if (a instanceof MissleBox) {
+			a.remove();
+			addMissle(1);
 		}
 		if (getHp() <= 0) 
 		{ 

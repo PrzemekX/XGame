@@ -15,6 +15,34 @@ public class Monster extends Actor {
 		m.setY(y + getHeight());
 		stage.addActor(m);
 	}
+	
+	public void Hpbox() {
+		HPBox Hp = new HPBox(stage);
+		Hp.setX(x + getWidth() / 2);
+		Hp.setY(y + getHeight());
+		stage.addActor(Hp);
+	}
+	
+	public void BombBox() {
+		BombBox Bomb = new BombBox(stage);
+		Bomb.setX(x + getWidth() / 2);
+		Bomb.setY(y + getHeight());
+		stage.addActor(Bomb);
+	}
+	
+	public void ShieldBox() {
+		ShieldBox Shield = new ShieldBox(stage);
+		Shield.setX(x + getWidth() / 2);
+		Shield.setY(y + getHeight());
+		stage.addActor(Shield);
+	}
+	
+	public void MissleBox() {
+		MissleBox Missle = new MissleBox(stage);
+		Missle.setX(x + getWidth() / 2);
+		Missle.setY(y + getHeight());
+		stage.addActor(Missle);
+	}
 
 	public void spawn() {
 		Monster m = new Monster(stage);
@@ -46,6 +74,19 @@ public class Monster extends Actor {
 			remove();
 			spawn();
 			stage.getPlayer().addScore(20);
+			int rand = (int) (Math.random() * 100);
+			if (rand > 90 && rand < 93) {
+				Hpbox();
+			}
+			if (rand > 80 && rand < 83) {
+				BombBox();
+			}
+			if (rand > 70 && rand < 73) {
+				ShieldBox();
+			}
+			if (rand > 60 && rand < 63) {
+				MissleBox();
+			}
 		}
 	}
 }
