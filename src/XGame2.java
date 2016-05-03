@@ -144,7 +144,12 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 	}
 	
 	public void paintStatus(Graphics2D g) {
-		paintScore(g);
+		try {
+			paintScore(g);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		paintHP(g);
 		paintAmmo(g);
 	}
@@ -160,12 +165,18 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 		g.drawString("Hp:", 230, Stage.WYSOKOSC_GRY + 20);
 	}
 
-	public void paintScore(Graphics2D g) {
-		g.setFont(new Font("Arial", Font.BOLD, 20));
+	public void paintScore(Graphics2D g) throws FileNotFoundException{
+		//Score
+		g.setFont(new Font("Arial", Font.BOLD, 16));
 		g.setPaint(Color.green);
-		g.drawString("Score:", 20, Stage.WYSOKOSC_GRY + 20);
+		g.drawString("Score:", 20, Stage.WYSOKOSC_GRY + 8);
 		g.setPaint(Color.red);
-		g.drawString(player.getScore() + "", 100, Stage.WYSOKOSC_GRY + 20);
+		g.drawString(player.getScore() + "", 100, Stage.WYSOKOSC_GRY + 8);
+		//Record
+		g.setPaint(Color.green);
+		g.drawString("Record:", 20, Stage.WYSOKOSC_GRY + 26);
+		g.setPaint(Color.yellow);
+		g.drawString(Integer.parseInt(Odczyt.Wczytaj()) + "", 100, Stage.WYSOKOSC_GRY + 26);
 	}
 
 	public void paintAmmo(Graphics2D g) {
@@ -207,10 +218,22 @@ class XGame2 extends Canvas implements ActionListener, Stage, KeyListener {
 	}
 	
 	public void paintGameOver(Graphics2D g) throws FileNotFoundException{
-		g.setColor(Color.white);
-		g.setFont(new Font("Arial", Font.BOLD, 20));
-		g.drawString("GAME OVER", Stage.SZEROKOSC / 2 - 50, Stage.WYSOKOSC / 2);
+		if(Integer.parseInt(Odczyt.Wczytaj()) > Player.score ) {
+			g.setColor(Color.white);
+			g.setFont(new Font("Arial", Font.BOLD, 20));
+			g.drawString("GAME OVER", Stage.SZEROKOSC / 2 - 50, Stage.WYSOKOSC / 2);
+		} else {
+			g.setColor(Color.white);
+			g.setFont(new Font("Arial", Font.BOLD, 20));
+			g.drawString("GAME OVER", Stage.SZEROKOSC / 2 - 50, (Stage.WYSOKOSC / 2) - 10);
+			g.setColor(Color.yellow);
+			g.drawString("NEW RECORD " + Player.score, Stage.SZEROKOSC / 2 - 50, (Stage.WYSOKOSC / 2) + 10);
+		}
 		timer.stop();
+		
+		if (Integer.parseInt(Odczyt.Wczytaj()) < Player.score ) {
+			Odczyt.Zapisz();
+		}
 	}
 	
 	public void paintGamePause(Graphics2D g) throws FileNotFoundException{
