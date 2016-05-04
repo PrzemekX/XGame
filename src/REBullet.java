@@ -18,5 +18,8 @@ public class REBullet extends Actor {
 		if (a instanceof Monster) {
 			remove();
 		}
+		if (a instanceof Monster2) {
+			remove();
+		}
 	}
 }

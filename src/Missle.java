@@ -25,5 +25,9 @@ public class Missle extends Actor {
 			remove();
 			Explosion();
 		}
+		if (a instanceof Monster2) {
+			remove();
+			Explosion();
+		}
 	}
 }

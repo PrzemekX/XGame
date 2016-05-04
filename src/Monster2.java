@@ -1,13 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Monster extends Actor {
+public class Monster2 extends Actor {
 	protected static final double FIRING_FREQUENCY = 0.01;
 	protected int vx;
-	public static final int MAX_HP = 20;
-	String []pot = { "EStatek1.png" };
+	public static final int MAX_HP = 50;
+	String []pot = { "EStatek2.png" };
 
-	public Monster(Stage stage) {
+	public Monster2(Stage stage) {
 		super(stage);
 		setSpriteNames( pot );
 		setFrameSpeed(10);
@@ -24,10 +24,6 @@ public class Monster extends Actor {
 		g.drawImage(spriteCache.getSprite(spriteNames[currentFrame]), x, y, stage);
 		g.setPaint(Color.red);
 		g.fillRect(x, y - 4, procHP(getWidth()), 6);
-		//TEST////////////////////////////////////////////////////////////
-		//g.setPaint(Color.yellow);
-		//g.drawString(String.valueOf(MonsterCounter.MonsterCount), x, y);
-		//TEST////////////////////////////////////////////////////////////
 	}
 	
 	public int getHp() {
@@ -51,7 +47,6 @@ public class Monster extends Actor {
 		if(hp <= 0) {
 			stage.getPlayer().addScore(20);
 			remove();
-			//MonsterCounter.MonsterCount -= 1;
 			spawn();
 			int rand = (int) (Math.random() * 100);
 			if (rand > 90 && rand < 93) {
@@ -105,19 +100,11 @@ public class Monster extends Actor {
 	}
 
 	public void spawn() {
-		if(MonsterCounter.MonsterCount % 10 != 9) {
-			Monster m = new Monster(stage);
-			m.setX((int) (Math.random() * (Stage.SZEROKOSC - getWidth())));
-			m.setY((int) (Math.random() * Stage.WYSOKOSC_GRY / 2));
-			m.setVx((int) 1);
-			stage.addActor(m);
-		} else {
-			Monster2 m2 = new Monster2(stage);
-			m2.setX((int) (Math.random() * (Stage.SZEROKOSC - getWidth())));
-			m2.setY((int) (Math.random() * Stage.WYSOKOSC_GRY / 2));
-			m2.setVx((int) 1);
-			stage.addActor(m2);
-		}
+		Monster m = new Monster(stage);
+		m.setX((int) (Math.random() * (Stage.SZEROKOSC - getWidth())));
+		m.setY((int) (Math.random() * Stage.WYSOKOSC_GRY / 2));
+		m.setVx((int) 1);
+		stage.addActor(m);
 		MonsterCounter.MonsterCount += 1;
 	}
 	

@@ -17,5 +17,8 @@ public class Bullet extends Actor {
 		if (a instanceof Monster) {
 			remove();
 		}
+		if (a instanceof Monster2) {
+			remove();
+		}
 	}
 }
