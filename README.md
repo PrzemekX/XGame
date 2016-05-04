@@ -23,7 +23,7 @@ Dodanie przeciwnikom ataków, oraz warunku końca gry, nowej broni defensywnej.
 7. Tydzień [+]
 Odradzanie się potworów, animowane tło oraz zatrzymywanie/wznawianie gry.
 
-8. Tydzień [-]
+8. Tydzień [+]
 Stworzenie wydarzeń urozmaicających grę, paczki z amunicją/hp oraz stworzenie zapisującego się rekordu punktów.
 
 9. Tydzień [-]
