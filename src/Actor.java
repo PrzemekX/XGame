@@ -6,13 +6,14 @@ public class Actor {
 	protected int x, y;
 	protected int width, height;
 	protected String spriteName;
-	protected Stage stage;
+	protected static Stage stage;
 	protected SpriteCache spriteCache;
 	protected int currentFrame;
 	protected String[] spriteNames;
 	protected int frameSpeed;
 	protected int t;
 	protected boolean markedForRemoval;
+	public int hp;
 
 	public Actor(Stage stage) {
 		this.stage = stage;

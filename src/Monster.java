@@ -1,12 +1,67 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 public class Monster extends Actor {
 	protected static final double FIRING_FREQUENCY = 0.01;
 	protected int vx;
+	public static final int MAX_HP = 20;
 	String []pot = { "EStatek1.png" };
 
 	public Monster(Stage stage) {
 		super(stage);
 		setSpriteNames( pot );
 		setFrameSpeed(10);
+		hp = MAX_HP;
+	}
+	
+	public int procHP(int a) {
+		float prHP = (float)(hp)/(float)(MAX_HP);
+		int Width = (int) ((float)(a) * prHP);
+		return Width;
+	}
+	
+	public void paint(Graphics2D g) {
+		g.drawImage(spriteCache.getSprite(spriteNames[currentFrame]), x, y, stage);
+		g.setPaint(Color.red);
+		g.fillRect(x, y - 4, procHP(getWidth()), 6);
+	}
+	
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int i) {
+		hp = i;
+	}
+	
+	public void addHp(int i) {
+		if (hp > -1 * i) {
+			hp += i;
+		} else {
+			hp = 0;
+			destroy();
+		}
+	}
+	
+	public void destroy() {
+		if(hp <= 0) {
+			stage.getPlayer().addScore(20);
+			remove();
+			spawn();
+			int rand = (int) (Math.random() * 100);
+			if (rand > 90 && rand < 93) {
+				Hpbox();
+			}
+			if (rand > 80 && rand < 83) {
+				BombBox();
+			}
+			if (rand > 70 && rand < 73) {
+				ShieldBox();
+			}
+			if (rand > 60 && rand < 63) {
+				MissleBox();
+			}
+		}
 	}
 	
 	public void fire() {
@@ -70,23 +125,20 @@ public class Monster extends Actor {
 	}
 	
 	public void collision(Actor a) {
-		if(a instanceof Bullet || a instanceof Bomb || a instanceof Player || a instanceof Expl || a instanceof REBullet) {
-			remove();
-			spawn();
-			stage.getPlayer().addScore(20);
-			int rand = (int) (Math.random() * 100);
-			if (rand > 90 && rand < 93) {
-				Hpbox();
-			}
-			if (rand > 80 && rand < 83) {
-				BombBox();
-			}
-			if (rand > 70 && rand < 73) {
-				ShieldBox();
-			}
-			if (rand > 60 && rand < 63) {
-				MissleBox();
-			}
+		if(a instanceof Bullet) {
+			addHp(-10);
+		}
+		if(a instanceof Bomb) {
+			addHp(-20);
+		}
+		if(a instanceof Player) {
+			addHp(-40);
+		}
+		if(a instanceof Expl) {
+			addHp(-30);
+		}
+		if(a instanceof REBullet) {
+			addHp(-10);
 		}
 	}
 }
